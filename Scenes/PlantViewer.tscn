@@ -1,0 +1,61 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Scripts/PlantViewer.gd" type="Script" id=1]
+[ext_resource path="res://Icons64x64/Cloud_Info.png" type="Texture" id=2]
+[ext_resource path="res://AmericanCaptain.tres" type="DynamicFont" id=3]
+
+[node name="PlantViewer" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 1 )
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 20.0
+margin_top = 20.0
+margin_right = -20.0
+margin_bottom = -20.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+margin_right = 410.0
+margin_bottom = 70.0
+
+[node name="BackButton" type="Button" parent="VBoxContainer/HBoxContainer"]
+margin_right = 200.0
+margin_bottom = 70.0
+rect_min_size = Vector2( 200, 70 )
+text = "Back"
+icon = ExtResource( 2 )
+
+[node name="Space2" type="ColorRect" parent="VBoxContainer/HBoxContainer"]
+margin_left = 204.0
+margin_right = 214.0
+margin_bottom = 70.0
+rect_min_size = Vector2( 10, 0 )
+color = Color( 1, 1, 1, 0 )
+
+[node name="Title" type="Label" parent="VBoxContainer/HBoxContainer"]
+margin_left = 218.0
+margin_top = 15.0
+margin_right = 398.0
+margin_bottom = 55.0
+custom_fonts/font = ExtResource( 3 )
+text = "PLANT VIEWER"
+
+[node name="Space" type="ColorRect" parent="VBoxContainer"]
+margin_top = 74.0
+margin_right = 410.0
+margin_bottom = 94.0
+rect_min_size = Vector2( 0, 20 )
+color = Color( 1, 1, 1, 0 )
+
+[node name="Label" type="Label" parent="VBoxContainer"]
+margin_top = 98.0
+margin_right = 410.0
+margin_bottom = 138.0
+custom_fonts/font = ExtResource( 3 )
+text = "ERROR"
+align = 1
+
+[connection signal="button_down" from="VBoxContainer/HBoxContainer/BackButton" to="." method="_on_BackButton_button_down"]
