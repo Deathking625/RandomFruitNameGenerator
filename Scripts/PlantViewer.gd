@@ -4,8 +4,6 @@ var plant_name = ProgrammManager.name_list_pressed_name
 var type = 0
 var poisonous = false
 
-var saved_plants = FileManager.load_plants()
-
 onready var label = $VBoxContainer/Label
 onready var rng = RandomNumberGenerator.new()
 
@@ -13,7 +11,7 @@ func _ready():
 	label.text = plant_name
 	var plant_path = "res://Plants/" + plant_name + "tres"
 	var file = File.new()
-	file.open(plant_path)
+	#file.open(plant_path,_File.READ)
 	
 
 

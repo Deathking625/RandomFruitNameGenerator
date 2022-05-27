@@ -18,16 +18,10 @@ _global_script_classes=[ {
 "class": "Plant",
 "language": "GDScript",
 "path": "res://Scripts/PlantResource.gd"
-}, {
-"base": "Node",
-"class": "Programm_Manager",
-"language": "GDScript",
-"path": "res://Scripts/ProgrammManager.gd"
 } ]
 _global_script_class_icons={
 "File_Manager": "",
-"Plant": "",
-"Programm_Manager": ""
+"Plant": ""
 }
 
 [application]

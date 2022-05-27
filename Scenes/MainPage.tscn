@@ -78,7 +78,7 @@ margin_top = 381.0
 margin_right = 410.0
 margin_bottom = 451.0
 rect_min_size = Vector2( 400, 50 )
-text = "SILIBLE EDITOR"
+text = "SYLIBLE EDITOR"
 icon = ExtResource( 5 )
 
 [node name="Space3" type="ColorRect" parent="VBoxContainer"]

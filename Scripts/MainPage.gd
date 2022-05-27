@@ -9,6 +9,10 @@ onready var title_text = $VBoxContainer/TitleText
 onready var rng = RandomNumberGenerator.new()
 
 
+func _ready():
+	print(OS.get_locale_language())
+
+
 func generator():
 	file_data = FileManager.load_file()
 	rng.randomize()
@@ -39,38 +43,9 @@ func _on_NameButton_button_down():
 	name_button.text = current_name
 
 
-#gehörtt geordnet!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 func _on_SaveButton_button_down():
-	var is_in_saved = false
-	for i in name_list.size():
-		if name_list[i] == current_name:
-			is_in_saved = true
-			title_text.text = "NOT SAVED : name is in the list"
-	if current_name == "":
-		is_in_saved = true
-		title_text.text = "NOT SAVED : name empty"
-	if current_name == "TAB TO GENERATE NAME":
-		is_in_saved = true
-		title_text.text = "NOT SAVED : standart text"
-	if !is_in_saved:
-		rng.randomize()
-		var poison_ran = rng.randf_range(0,1)
-		var poisonous = false
-		var type : int = 0
-		if poison_ran <= .2:
-			poisonous = true
-		if current_name.ends_with("wurz") or current_name.ends_with("knolle"):
-			type = 0
-		elif current_name.ends_with("ling") or current_name.ends_with("pilz"):
-			type = 1
-		elif current_name.ends_with("kraut") or current_name.ends_with("blatt"):
-			type = 2
-		else:
-			rng.randomize()
-			type = rng.randi_range(0,5)
-		FileManager.save_plant(current_name, type, poisonous)
-		name_list = FileManager.get_name_list()
-		title_text.text = "Name Saved"
+	title_text.text = ProgrammManager.generate_plant(current_name)
+	name_list = FileManager.get_name_list()
 
 
 func _on_SilibleEditorButton_button_down():
