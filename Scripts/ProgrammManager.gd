@@ -24,7 +24,7 @@ func generate_name():
 
 
 func generate_plant(plant_name):
-	var name_list = FileManager.get_name_list()
+	var name_list = ProgrammManager.get_name_list()
 	for i in name_list.size():
 		if name_list[i] == plant_name:
 			return "NOT SAVED : name is in the list"
@@ -47,3 +47,68 @@ func generate_plant(plant_name):
 		FileManager.save_plant(plant_name, type, poisonous)
 		return "Name Saved"
 	return "NOT SAVED : no name" 
+
+
+func get_plant_type_name(index):
+	var plant_type
+	match index:
+		0:
+			plant_type = "Roots"
+		1:
+			plant_type = "Mushroom"
+		2:
+			plant_type = "Herb"
+		3:
+			plant_type = "Crops"
+		4:
+			plant_type = "Shrup"
+		4:
+			plant_type = "Tree"
+		_:
+			plant_type = "Roots"
+	return plant_type
+
+
+func get_plant_type(resource, type_index):
+	match type_index:
+		0:
+			resource.plant_type = resource.type.ROOTS
+		1:
+			resource.plant_type = resource.type.MUSHROOM
+		2:
+			resource.plant_type = resource.type.HERB
+		3:
+			resource.plant_type = resource.type.CROPS
+		4:
+			resource.plant_type = resource.type.SHRUP
+		5:
+			resource.plant_type = resource.type.TREE
+		_:
+			resource.plant_type = resource.type.ROOTS
+
+
+func get_name_list():
+	var plant_list = []
+	var dir = Directory.new()
+	if !dir.dir_exists("user://Plants/"):
+		dir.open("user://")
+		dir.make_dir("Plants")
+	dir.open("user://Plants/")
+	dir.list_dir_begin()
+	
+	var filename = dir.get_next()
+	while(filename):
+		if not dir.current_is_dir() and filename.ends_with(".tres"):
+			var current_file = load("user://Plants/" + filename)
+			if current_file.has_method("is_a_plant"):
+				plant_list.append(current_file.plant_name)
+		filename = dir.get_next()
+	return plant_list
+
+
+
+
+
+
+
+

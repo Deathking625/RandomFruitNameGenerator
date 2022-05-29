@@ -9,32 +9,13 @@ onready var rng = RandomNumberGenerator.new()
 
 func _ready():
 	label.text = plant_name
-	var plant_path = "res://Plants/" + plant_name + "tres"
-	var file = File.new()
-	#file.open(plant_path,_File.READ)
-	
 
 
 func display_plant():
 	pass
 
 
-func get_type(f_type):
-	match f_type:
-		0:
-			type = "Roots"
-		1:
-			type = "Mushroom"
-		2:
-			type = "Herp"
-		3:
-			type = "Crops"
-		4:
-			type = "Shrup"
-		5:
-			type = "Tree"
-
-
 func _on_BackButton_button_down():
+# warning-ignore:return_value_discarded
 	get_tree().change_scene("res://Scenes/NameList.tscn")
 

@@ -7,6 +7,7 @@ onready var text_label = $VBoxContainer/VBoxContainer/InfoText
 
 
 func _on_BackButton_button_down():
+# warning-ignore:return_value_discarded
 	get_tree().change_scene("res://Scenes/MainPage.tscn")
 
 

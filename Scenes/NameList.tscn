@@ -2,7 +2,7 @@
 
 [ext_resource path="res://Icons64x64/Menu.png" type="Texture" id=1]
 [ext_resource path="res://Scripts/NameList.gd" type="Script" id=2]
-[ext_resource path="res://AmericanCaptain.tres" type="DynamicFont" id=3]
+[ext_resource path="res://theme/casper_dynamic_font.tres" type="DynamicFont" id=3]
 
 [node name="NameList" type="Control"]
 anchor_right = 1.0
@@ -18,7 +18,7 @@ margin_right = -20.0
 margin_bottom = -20.0
 
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
-margin_right = 410.0
+margin_right = 984.0
 margin_bottom = 70.0
 
 [node name="BackButton" type="Button" parent="VBoxContainer/HBoxContainer"]
@@ -37,22 +37,22 @@ color = Color( 1, 1, 1, 0 )
 
 [node name="Title" type="Label" parent="VBoxContainer/HBoxContainer"]
 margin_left = 248.0
-margin_top = 15.0
-margin_right = 373.0
-margin_bottom = 55.0
+margin_top = 28.0
+margin_right = 323.0
+margin_bottom = 42.0
 custom_fonts/font = ExtResource( 3 )
 text = "NAME LIST"
 
 [node name="Space" type="ColorRect" parent="VBoxContainer"]
 margin_top = 74.0
-margin_right = 410.0
+margin_right = 984.0
 margin_bottom = 94.0
 rect_min_size = Vector2( 0, 20 )
 color = Color( 1, 1, 1, 0 )
 
 [node name="ScrollContainer" type="ScrollContainer" parent="VBoxContainer"]
 margin_top = 98.0
-margin_right = 410.0
+margin_right = 984.0
 margin_bottom = 740.0
 rect_min_size = Vector2( 0, 642 )
 

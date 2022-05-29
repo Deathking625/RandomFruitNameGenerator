@@ -1,16 +1,12 @@
 extends Control
 
 var file_data = FileManager.load_file()
-var name_list = FileManager.get_name_list()
+var name_list = ProgrammManager.get_name_list()
 var current_name : String
 
 onready var name_button = $VBoxContainer/NameButton
 onready var title_text = $VBoxContainer/TitleText
 onready var rng = RandomNumberGenerator.new()
-
-
-func _ready():
-	print(OS.get_locale_language())
 
 
 func generator():
@@ -45,14 +41,16 @@ func _on_NameButton_button_down():
 
 func _on_SaveButton_button_down():
 	title_text.text = ProgrammManager.generate_plant(current_name)
-	name_list = FileManager.get_name_list()
+	name_list = ProgrammManager.get_name_list()
 
 
 func _on_SilibleEditorButton_button_down():
+# warning-ignore:return_value_discarded
 	get_tree().change_scene("res://Scenes/Silible Editor.tscn")
 
 
 func _on_NameListButton_button_down():
+# warning-ignore:return_value_discarded
 	get_tree().change_scene("res://Scenes/NameList.tscn")
 
 
