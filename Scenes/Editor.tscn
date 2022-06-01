@@ -1,11 +1,17 @@
-[gd_scene format=2]
+[gd_scene load_steps=2 format=2]
 
-[node name="Control" type="Control"]
+[ext_resource path="res://theme/DarkTheme.tres" type="Theme" id=3]
+
+[node name="Editor" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+theme = ExtResource( 3 )
 
-[node name="WindowDialog" type="WindowDialog" parent="."]
-visible = true
-anchor_right = 0.085
-margin_right = -39.04
-margin_bottom = 40.0
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 20.0
+margin_top = 20.0
+margin_right = -20.0
+margin_bottom = -20.0
+rect_pivot_offset = Vector2( -312, -70 )
