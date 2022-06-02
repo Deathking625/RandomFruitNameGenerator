@@ -1,11 +1,17 @@
-extends Control
+extends PopupMenu
 
 var group = preload("res://NameListButtonGroup.tres")
-var name_list = ProgrammManager.get_name_list()
+var name_list
 
 onready var scroll_container = $VBoxContainer/ScrollContainer/VBoxContainer
+onready var window_dialog = $WindowDialog
 
 func _ready():
+	draw_buttons()
+
+
+func draw_buttons():
+	name_list = ProgrammManager.get_name_list()
 	for i in range(0,scroll_container.get_child_count()):
 		scroll_container.get_child(i).queue_free()
 	for i in range(0, name_list.size()):
@@ -25,13 +31,10 @@ func generate_button(text:String):
 
 func _on_button_down():
 	ProgrammManager.name_list_pressed_name = group.get_pressed_button().name
+	window_dialog.window_title = ProgrammManager.name_list_pressed_name
+	window_dialog.show()
 # warning-ignore:return_value_discarded
-	get_tree().change_scene("res://Scenes/PlantViewer.tscn")
-
-
-func _on_BackButton_button_down():
-# warning-ignore:return_value_discarded
-	get_tree().change_scene("res://Scenes/MainPage.tscn")
+	#get_tree().change_scene("res://Scenes/PlantViewer.tscn")
 
 
 

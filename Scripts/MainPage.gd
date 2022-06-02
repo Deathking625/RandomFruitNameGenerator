@@ -7,6 +7,7 @@ var current_name : String
 onready var name_button = $VBoxContainer/NameButton
 onready var title_text = $VBoxContainer/TitleText
 onready var rng = RandomNumberGenerator.new()
+onready var name_list_window = $NameList
 
 
 func generator():
@@ -50,7 +51,6 @@ func _on_SilibleEditorButton_button_down():
 
 
 func _on_NameListButton_button_down():
-# warning-ignore:return_value_discarded
-	get_tree().change_scene("res://Scenes/NameList.tscn")
+	name_list_window.show()
 
 

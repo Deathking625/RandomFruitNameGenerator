@@ -37,6 +37,7 @@ ProgrammManager="*res://Scripts/ProgrammManager.gd"
 
 [display]
 
+window/size/width=800
 window/handheld/orientation="portrait"
 window/stretch/aspect="keep_height"
 
