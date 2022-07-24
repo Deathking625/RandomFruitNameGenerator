@@ -2,9 +2,10 @@ extends Resource
 class_name Plant
 
 export var plant_name : String
-enum type{ROOTS, MUSHROOM, HERB, CROPS, SHRUP, TREE}
+enum type{ROOTS, MUSHROOM, HERB, CROPS, TREE, CACTUS}
 export (type) var plant_type
-export var poisonous : bool
+enum habitat{}
+export var edibility : int
 
 
 func is_a_plant():

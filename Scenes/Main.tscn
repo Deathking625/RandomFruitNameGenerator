@@ -1,0 +1,61 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Scenes/PlantViewer.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Scenes/Generator.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Scenes/Silible Editor.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Scenes/NameList.tscn" type="PackedScene" id=4]
+
+[node name="Control" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="TabContainer" type="TabContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+tab_align = 0
+
+[node name="Generator" type="Tabs" parent="TabContainer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 4.0
+margin_top = 32.0
+margin_right = -4.0
+margin_bottom = -4.0
+
+[node name="MainPage" parent="TabContainer/Generator" instance=ExtResource( 2 )]
+
+[node name="Sylible Editor" type="Tabs" parent="TabContainer"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 4.0
+margin_top = 32.0
+margin_right = -4.0
+margin_bottom = -4.0
+
+[node name="Syllible Editor" parent="TabContainer/Sylible Editor" instance=ExtResource( 3 )]
+
+[node name="Plant List" type="Tabs" parent="TabContainer"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 4.0
+margin_top = 32.0
+margin_right = -4.0
+margin_bottom = -4.0
+
+[node name="NameList" parent="TabContainer/Plant List" instance=ExtResource( 4 )]
+
+[node name="Plant" type="Tabs" parent="TabContainer"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 4.0
+margin_top = 32.0
+margin_right = -4.0
+margin_bottom = -4.0
+tab_close_display_policy = 2
+
+[node name="PlantViewer" parent="TabContainer/Plant" instance=ExtResource( 1 )]
+
+[connection signal="refresh_list" from="TabContainer/Generator/MainPage" to="TabContainer/Plant List/NameList" method="_on_MainPage_refresh_list"]

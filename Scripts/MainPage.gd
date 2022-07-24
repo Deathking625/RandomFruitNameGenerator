@@ -1,4 +1,5 @@
 extends Control
+signal refresh_list
 
 var file_data = FileManager.load_file()
 var name_list = ProgrammManager.get_name_list()
@@ -6,26 +7,10 @@ var current_name : String
 
 onready var name_button = $VBoxContainer/NameButton
 onready var title_text = $VBoxContainer/TitleText
-onready var rng = RandomNumberGenerator.new()
-onready var name_list_window = $NameList
+onready var font_highlighted = preload("res://theme/casper_highlighted_dynamic_font.tres")
 
-
-func generator():
-	file_data = FileManager.load_file()
-	rng.randomize()
-	var length = rng.randi_range(1,4)
-	rng.randomize()
-	var text = file_data.start[rng.randi() % file_data.start.size()]
-	rng.randomize()
-	if length ==3:
-		rng.randomize()
-		text += file_data.mid[rng.randi() % file_data.mid.size()]
-	if length ==4:
-		rng.randomize()
-		text += file_data.mid[rng.randi() % file_data.mid.size()]
-	rng.randomize()
-	text += file_data.end[rng.randi() % file_data.end.size()]
-	return text
+func _ready():
+	pass
 
 
 func sort_file_data():
@@ -35,22 +20,25 @@ func sort_file_data():
 	FileManager.save_file(file_data)
 
 
+func get_title_text(return_value : int):
+	var output:String
+	match return_value:
+		0: output = current_name + " gespeichert!"
+		1: output = current_name + " existiert schon - nicht gespeichert!"
+		2: output = "Kein Name - nicht gespeichert!"
+		_: output = "Etwas Blödes ist passiert!"
+	return output
+
+
 func _on_NameButton_button_down():
-	current_name = generator()
+	current_name = ProgrammManager.generate_name()
 	name_button.text = current_name
+	name_button.set("custom_fonts/font", font_highlighted)
 
 
 func _on_SaveButton_button_down():
-	title_text.text = ProgrammManager.generate_plant(current_name)
+	ProgrammManager.name_list_pressed_name = current_name
+	title_text.text = get_title_text(ProgrammManager.generate_plant(current_name))
 	name_list = ProgrammManager.get_name_list()
-
-
-func _on_SilibleEditorButton_button_down():
-# warning-ignore:return_value_discarded
-	get_tree().change_scene("res://Scenes/Silible Editor.tscn")
-
-
-func _on_NameListButton_button_down():
-	name_list_window.show()
-
+	emit_signal("refresh_list")
 

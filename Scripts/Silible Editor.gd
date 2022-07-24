@@ -11,45 +11,36 @@ func _on_BackButton_button_down():
 	get_tree().change_scene("res://Scenes/MainPage.tscn")
 
 
+func print_text_label(position:int, returnvalue:int, name):
+	var text:String
+	var pos_name :String
+	match position:
+		0: pos_name = "Anfangssilbe"
+		1: pos_name = "Mittelsilbe"
+		2: pos_name = "Endsilbe"
+	match returnvalue:
+		0: text = name + " gespeichert als " + pos_name + "!"
+		1: text = "Leerer Text! Silbe nicht gespeichert"
+		2: text = "Position nicht gefunden. Silbe nicht gespeichert!"
+		3: text = name + "schon vorhanden. Silbe nicht gespeichert!"
+	text_label.text = text
+
+
 func _on_AddStartButton_button_down():
-	if file_data.start.find(line_edit.text) == -1:
-		if line_edit.text != "":
-			file_data.start.append(line_edit.text)
-			file_data.start.sort()
-			FileManager.save_file(file_data)
-			text_label.text = "Startsilbe Gespeichert: " + line_edit.text
-		else:
-			text_label.text = "Leer - Nicht Gespeichert!"
-	else:
-		text_label.text = "Bereits vorhanden - Nicht Gespeichert!"
+	var _returnvalue:int = ProgrammManager.add_silible(0, line_edit.text)
+	print_text_label(0, _returnvalue, line_edit.text)
 	line_edit.text = ""
 
 
 func _on_AddMidButton_button_down():
-	if file_data.mid.find(line_edit.text) == -1:
-		if line_edit.text != "":
-			file_data.mid.append(line_edit.text)
-			file_data.mid.sort()
-			FileManager.save_file(file_data)
-			text_label.text = "Mittelsilbe Gespeichert: " + line_edit.text
-		else:
-			text_label.text = "Leer - Nicht Gespeichert!"
-	else:
-		text_label.text = "Bereits vorhanden - Nicht Gespeichert!"
+	var _returnvalue:int = ProgrammManager.add_silible(1, line_edit.text)
+	print_text_label(1, _returnvalue, line_edit.text)
 	line_edit.text = ""
 
 
 func _on_AddEndButton_button_down():
-	if file_data.end.find(line_edit.text) == -1:
-		if line_edit.text != "":
-			file_data.end.append(line_edit.text)
-			file_data.end.sort()
-			FileManager.save_file(file_data)
-			text_label.text = "Endsilbe Gespeichert: " + line_edit.text
-		else:
-			text_label.text = "Leer - Nicht Gespeichert!"
-	else:
-		text_label.text = "Bereits vorhanden - Nicht Gespeichert!"
+	var _returnvalue:int = ProgrammManager.add_silible(2, line_edit.text)
+	print_text_label(2, _returnvalue, line_edit.text)
 	line_edit.text = ""
 
 
